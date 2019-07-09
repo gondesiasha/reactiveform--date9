@@ -1,0 +1,276 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <div   class="outerborder">
+  <!-- <form [formGroup]=" registrationForm" novalidate> -->
+      <form name="form" [formGroup]=" registrationForm" autocomplete="on" (ngSubmit)="registrationForm.valid  "  novalidate>
+    <table align=center>
+      <tr>
+        <td>Full Name :</td>
+        <td>Last Name :</td>
+
+        
+      </tr>
+      <tr>
+        <td><input type="text" class="form-control" formControlName="name"></td>
+        <td><input type="text" class="form-control" formControlName="lastName"></td>      
+
+       
+      </tr>
+      <tr>
+        <td class=a>
+            <div *ngIf="registrationForm.controls['name'].invalid
+             && (registrationForm.controls['name'].dirty || registrationForm.controls['name'].touched)"
+              class="alert alert-danger">
+                <div *ngIf="registrationForm.controls['name'].errors.required" class="error">
+                Name is required.
+              </div>
+              <div *ngIf="registrationForm.controls['name'].errors.minlength" class="error">
+                Name must be at least 4 characters long.
+              </div>
+            </div>
+
+        </td>
+        <td class=a>
+            <div *ngIf="registrationForm.controls['lastName'].invalid
+             && (registrationForm.controls['lastName'].dirty || registrationForm.controls['lastName'].touched)"
+              class="alert alert-danger">
+                <div *ngIf="registrationForm.controls['lastName'].errors.required" class="error">
+                Name is required.
+              </div>
+              <div *ngIf="registrationForm.controls['lastName'].errors.minlength" class="error">
+                Name must be at least 4 characters long.
+              </div>
+            </div>
+
+        </td>
+        
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>Date of Birth :</td>
+      </tr>
+      <tr>
+        <td><input type="text" class="form-control" formControlName="email"> </td>
+        <td> <my-date-picker name="dob" [options]="myDatePickerOptions"
+          formControlName="dob"></my-date-picker></td>
+      </tr>
+      <tr>
+        <td class="a">
+            <div *ngIf="registrationForm.controls['email'].invalid
+            && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)"
+             class="alert alert-danger">
+               <div *ngIf="registrationForm.controls['email'].errors.required" class="error">
+               Email is required.
+             </div>
+             <div *ngIf="registrationForm.controls['email'].errors.pattern" class="error">
+              pattern is required.
+             </div>
+           </div>
+
+        </td>
+      </tr>
+      <tr>
+        <td>Gender :</td>
+        <td> <input type="radio" name="gender"  value="male" class="form-control" formControlName="gender"> Male
+          <input type="radio"  name="gender"   value="Female"  class="form-control" formControlName="gender"   > Female</td>
+      </tr>
+
+      <tr>
+          <td class="a">
+              <div *ngIf="registrationForm.controls['gender'].invalid
+              && (registrationForm.controls['gender'].dirty || registrationForm.controls['gender'].touched)"
+               class="alert alert-danger">
+                 <div *ngIf="registrationForm.controls['gender'].errors.required" class="error">
+                 Gender is required.
+               </div>
+               
+             </div>
+  
+          </td>
+        </tr>
+        <tr>
+          <td>Mobile :</td>
+          <td>land Line :</td>
+
+        
+        </tr>
+        <tr>
+            <td><input type="text" class="form-control" formControlName="mobile" onkeypress="return event.charCode >= 48 && event.charCode <= 57 " > </td>
+            <td><input type="text" class="form-control" formControlName="land"   onkeypress="return event.charCode >= 48 && event.charCode <= 57 "> </td>
+            
+        </tr>
+        <tr>
+   
+            <td class=a>
+                <div *ngIf="registrationForm.controls['mobile'].invalid
+                && (registrationForm.controls['mobile'].dirty || registrationForm.controls['mobile'].touched)"
+                 class="alert alert-danger">
+                   <div *ngIf="registrationForm.controls['mobile'].errors.required" class="error">
+                   mobile number  is required.
+                 </div>
+                 <div *ngIf="registrationForm.controls['mobile'].errors.minlength" class="error">
+                    10 characters is required.
+                  </div>
+                 
+               </div>
+    
+            </td>
+
+            <td class=a>
+                <div *ngIf="registrationForm.controls['land'].invalid
+                && (registrationForm.controls['land'].dirty || registrationForm.controls['land'].touched)"
+                 class="alert alert-danger">
+                   <div *ngIf="registrationForm.controls['land'].errors.required" class="error">
+                  number  is required.
+                 </div>
+                 <div *ngIf="registrationForm.controls['land'].errors.minlength" class="error">
+                    10 characters is required.
+                  </div>
+                 
+                 
+               </div>
+    
+            </td>
+        
+        
+        </tr>
+
+
+        <tr>
+            <td>college studying </td>
+            <td><select id="select"  value="-1" name="select" class="form-control" formControlName="college" >
+              <option disabled selectedvalue="-1">--select college--</option>
+              <option>Raghu engineering college</option>
+              <option>Anil neerukonda institute</option>
+              <option>Srinivasa engineering college</option>
+              <option>MVGR</option>
+            </select> </td>
+                
+        </tr>
+        <tr>
+          <td></td>
+          <td class=a>  <div *ngIf="registrationForm.controls['college'].invalid
+            && (registrationForm.controls['college'].dirty || registrationForm.controls['college'].touched)"
+             class="alert alert-danger">
+               <div *ngIf="registrationForm.controls['college'].errors.required" class="error">
+             required.
+             </div>
+             
+           </div>  </td>
+        </tr>
+        <tr>
+            <td>Address :</td>
+            <td> <textarea name="message" rows="10" cols="30" class="form-control" formControlName="address">Address :</textarea></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class=a>
+              <div *ngIf="registrationForm.controls['address'].invalid
+              && (registrationForm.controls['address'].dirty || registrationForm.controls['address'].touched)"
+               class="alert alert-danger">
+                 <div *ngIf="registrationForm.controls['address'].errors.required" class="error">
+               required.
+               </div>
+               
+             </div>
+
+          </td>
+        </tr>
+        <tr>
+          <td> State :</td>
+          <td>  <select id="select"  value="-1" name="select" class="form-control" formControlName="state" >
+                
+              <option>Andhra Pradesh</option> 
+              <option>Telengana</option> 
+              <option>chennai</option>
+              <option>kerala</option>          
+           </select>
+
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class=a>
+              <div *ngIf="registrationForm.controls['state'].invalid
+              && (registrationForm.controls['state'].dirty || registrationForm.controls['state'].touched)"
+               class="alert alert-danger">
+                 <div *ngIf="registrationForm.controls['state'].errors.required" class="error">
+               required.
+               </div>
+               
+             </div>
+  
+          </td>
+        </tr>
+        
+
+
+    </table>
+    <!-- <input type="checkbox" name="check" value="check"  class="form-control" formControlName="check">agree the terms and conditions <br>  <br>
+
+    <div *ngIf="registrationForm.controls['check'].invalid
+    && (registrationForm.controls['state'].dirty || registrationForm.controls['state'].touched)"
+     class="alert alert-danger">
+       <div *ngIf="registrationForm.controls['check'].errors.required" class="error">
+     required.
+     </div>
+     </div> -->
+
+    <button class="bt" (click)="onSubmit(registrationForm.value)"  [disabled]="registrationForm.pristine ||registrationForm.invalid">Register</button>
+
+
+
+  </form>
+  </div>
+ 
+  
+</div>
+
+<table>
+
+    <tr>
+        <td>First Name:</td>
+        
+         <td>Last Name:</td>
+         <td>Email :</td>
+         <td>date of Birth :</td>
+         <td>gender</td>
+         
+          <td>Mobile Number :</td>
+          <td>Land Line : </td>
+          <td>college : </td>
+          <td>address:<td>
+         <td>state : </td>  
+    
+    
+        
+      </tr>
+  <tr *ngFor="let i of arr">
+    <td>{{i.name }}</td>
+    <td>{{i.lastName }}</td>
+    <td>{{i.email }}</td>
+    <td>{{i.dob }}</td>
+    <td>{{i.gender }}</td>
+    <td>{{i.mobile }}</td>
+    <td>{{i.land }}</td>
+    
+    <td>{{i.college }}</td>
+    
+    <td>{{i.address }}</td>
+    
+    <td>{{i.state}}</td>
+    
+
+  </tr>
+</table>
+
+<router-outlet></router-outlet>
+
+
+
+  
+
+
